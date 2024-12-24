@@ -1,21 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from "react-native";
+import useAuthStatus from "@/hooks/useAuthStatus";
+import { Redirect } from "expo-router";
+import { SafeAreaView } from "react-native";
 
-export default function Index() {
+export default function RootPage() {
+  const { isAuthenticated } = useAuthStatus();
+
   return (
-    <View
-
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <StatusBar style="inverted" />
-      <Text
-        className="text-2xl "
-      >Edit app/index.tsx to edit this screen.</Text>
-
-    </View>
+    <SafeAreaView className=" flex-1 items-center justify-center">
+      {isAuthenticated === null ? (
+        <>
+        </>
+      ) : isAuthenticated ? (
+        <Redirect href={"/(auth)/tasks"} />
+      ) : (
+        <Redirect href={"/login"} />
+      )}
+    </SafeAreaView>
   );
 }
