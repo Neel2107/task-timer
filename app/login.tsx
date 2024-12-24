@@ -26,7 +26,7 @@ const LoginScreen = () => {
     try {
       await login(username, password);
       ToastAndroid.show("Login successful!", ToastAndroid.SHORT);
-      router.replace("/(auth)/tasks")
+      router.replace("/(auth)/task-rooms")
     } catch (error: any) {
       ToastAndroid.show(error.message, ToastAndroid.SHORT);
     } finally {
@@ -35,51 +35,50 @@ const LoginScreen = () => {
   };
 
   return (
-    <SafeAreaView className="bg-white flex-1 items-center justify-center px-5 relative">
-      <StatusBar style="dark" />
+      <SafeAreaView className="bg-white flex-1 items-center justify-center px-5 relative">
 
-      <View className="flex-1 gap-4 w-full justify-center space-y-6">
-        <Text
-          className="text-4xl  text-center text-brand-alternative font-dmSansExtraBold font-extrabold">Welcome To Task Timer</Text>
+        <View className="flex-1 gap-4 w-full justify-center space-y-6">
+          <Text
+            className="text-4xl  text-center text-brand-alternative font-dmSansExtraBold font-extrabold">Welcome To Task Timer</Text>
 
-        <Text className="text-center text-text-medium-contrast">
-          Enter your login credentials to continue
-        </Text>
+          <Text className="text-center text-text-medium-contrast">
+            Enter your login credentials to continue
+          </Text>
 
-        <View className="flex flex-col gap-4 ">
-          <View className="flex-col gap-4 ">
+          <View className="flex flex-col gap-4 ">
+            <View className="flex-col gap-4 ">
+              <View>
+                <CustomTextInput
+                  value={username}
+                  onChangeText={setUsername}
+                  placeholder="Username"
+                />
+              </View>
+
+              <View>
+                <CustomTextInput
+                  value={password}
+                  onChangeText={setPassword}
+                  placeholder="Password"
+                  isPassword={true}
+                />
+              </View>
+            </View>
             <View>
-              <CustomTextInput
-                value={username}
-                onChangeText={setUsername}
-                placeholder="Username"
+
+
+              <AnimatedButton
+                onPress={handleLogin}
+                isLoading={isLoading}
+                text="Login"
+                disabled={isLoading}
               />
             </View>
-
-            <View>
-              <CustomTextInput
-                value={password}
-                onChangeText={setPassword}
-                placeholder="Password"
-                isPassword={true}
-              />
-            </View>
-          </View>
-          <View>
-
-
-            <AnimatedButton
-              onPress={handleLogin}
-              isLoading={isLoading}
-              text="Login"
-              disabled={isLoading}
-            />
           </View>
         </View>
-      </View>
 
 
-    </SafeAreaView>
+      </SafeAreaView>
   );
 };
 

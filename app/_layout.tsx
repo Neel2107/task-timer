@@ -1,16 +1,34 @@
+import { AppProvider } from "@/context/AppContext";
 import useAuthStatus from "@/hooks/useAuthStatus";
 import { useNotificationResponseHandler } from "@/hooks/useNotificationResponseHandler";
 import { setupNotificationCategories } from "@/utils/helper";
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack, useRouter } from "expo-router";
+import * as Notifications from "expo-notifications";
+import { Stack, useRouter } from "expo-router";
+import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 import "../global.css";
 
 export { ErrorBoundary } from "expo-router";
 
 SplashScreen.preventAutoHideAsync();
+
+SplashScreen.setOptions({
+  duration: 1000,
+  fade: true,
+});
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
 
 const InitialLayout = () => {
   const [loaded, error] = useFonts({
@@ -36,7 +54,7 @@ const InitialLayout = () => {
     if (loaded && isAuthenticated !== null) {
       SplashScreen.hideAsync();
       if (isAuthenticated) {
-        router.replace("/(auth)/tasks");
+        router.replace("/(auth)/task-rooms");
       } else {
         router.replace("/login");
       }
@@ -49,24 +67,31 @@ const InitialLayout = () => {
 
 
   if (!loaded || isAuthenticated === null) {
-    return <ActivityIndicator
-      color={"#000"}
-    />;
+    return (<View className="flex-1 flex items-center justify-center">
+      <ActivityIndicator
+        color={"#000"}
+      />
+    </View>)
   }
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(auth)" />
-      <Stack.Screen name="index" />
-      <Stack.Screen name="login" />
-    </Stack>
+    <>
+      <StatusBar style="dark" />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(auth)" />
+        <Stack.Screen name="index" />
+        <Stack.Screen name="login" />
+      </Stack>
+    </>
   );
 };
 
 export default function RootLayout() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <InitialLayout />
-    </GestureHandlerRootView>
+    <AppProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <InitialLayout />
+      </GestureHandlerRootView>
+    </AppProvider>
   );
 }

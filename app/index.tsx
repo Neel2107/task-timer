@@ -11,7 +11,7 @@ export default function RootPage() {
         <>
         </>
       ) : isAuthenticated ? (
-        <Redirect href={"/(auth)/tasks"} />
+        <Redirect href={"/(auth)/task-rooms"} />
       ) : (
         <Redirect href={"/login"} />
       )}

@@ -45,7 +45,7 @@ export const validateInputs = (username: string, password: string): boolean => {
           options: { opensAppToForeground: true }, 
         },
       ]);
-      console.log("Notification category 'task-actions' set up successfully.");
+      // console.log("Notification category 'task-actions' set up successfully.");
     } catch (error) {
       console.error("Failed to set up notification categories", error);
     }
