@@ -10,6 +10,8 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { KeyboardProvider } from "react-native-keyboard-controller";
+
 
 import "../global.css";
 
@@ -88,10 +90,12 @@ const InitialLayout = () => {
 
 export default function RootLayout() {
   return (
-    <AppProvider>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <InitialLayout />
-      </GestureHandlerRootView>
-    </AppProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <KeyboardProvider>
+        <AppProvider>
+          <InitialLayout />
+        </AppProvider>
+      </KeyboardProvider>
+    </GestureHandlerRootView>
   );
 }

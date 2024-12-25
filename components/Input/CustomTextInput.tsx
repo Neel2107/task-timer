@@ -20,16 +20,18 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
 }) => {
     const [showPassword, setShowPassword] = useState(!isPassword)
     return (
-        <View className={`flex flex-row items-center border border-zinc-300 rounded-md px-4 py-3 ${className}`}>
+        <View className={`flex flex-row items-center border border-zinc-200 rounded-2xl  p-4 ${className}`}>
             <TextInput
                 style={{ flex: 1 }}
                 placeholder={placeholder}
                 placeholderTextColor="#9CA3AF"
+                cursorColor={"#7461c3"}
                 value={value}
                 onChangeText={onChangeText}
                 secureTextEntry={!showPassword && isPassword}
                 autoCapitalize="none"
                 className="text-text-body"
+                maxLength={40}
                 {...rest}
             />
             {isPassword && (

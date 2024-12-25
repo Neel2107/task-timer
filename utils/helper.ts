@@ -1,4 +1,5 @@
 import { Alert, ToastAndroid } from "react-native";  import * as Notifications from "expo-notifications";
+import { Task } from "./types";
 
 
 export const jsonLog = (data: any) => {
@@ -29,6 +30,27 @@ export const validateInputs = (username: string, password: string): boolean => {
   };
 
 
+ export  const scheduleTaskNotification = async (task: Task) => {
+    const { title, starts_in } = task;
+    if (!starts_in?.seconds) return;
+    try {
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: "Task Reminder",
+          body: `Your task "${title}" is starting soon!`,
+          data: { task },
+          sound: "default",
+          categoryIdentifier: "task-actions",
+        },
+        trigger: {
+          type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+          seconds: starts_in.seconds,
+        },
+      });
+    } catch (error) {
+      console.error("Failed to schedule notification:", error);
+    }
+  };
 
 
   export const setupNotificationCategories = async () => {
@@ -50,5 +72,5 @@ export const validateInputs = (username: string, password: string): boolean => {
       console.error("Failed to set up notification categories", error);
     }
   };
-  
+
   

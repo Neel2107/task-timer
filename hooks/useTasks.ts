@@ -1,14 +1,13 @@
 import { useAppContext } from "@/context/AppContext";
 import { CREATE_TASK_ROOM, GET_NEXT_TASK, GET_TASKS } from "@/utils/apis";
 import api from "@/utils/axios";
+import { scheduleTaskNotification } from "@/utils/helper";
 import { Task, TaskRoom } from "@/utils/types";
-import * as Notifications from "expo-notifications";
 import { useState } from "react";
 
 export const useTasks = () => {
-  // const [tasks, setTasks] = useState<Task[]>([]);
-  const {tasks, setTasks} = useAppContext()
-  const [taskRooms, setTaskRooms] = useState<TaskRoom[]>([]);
+  const {tasks, setTasks, taskRooms, setTaskRooms} = useAppContext()
+
   const [currentRoomId, setCurrentRoomId] = useState<string | null>(null);
   const [isCreatingRoom, setIsCreatingRoom] = useState(false);
   const [isFetchingTasks, setIsFetchingTasks] = useState(false);
@@ -64,28 +63,7 @@ export const useTasks = () => {
     }
   };
 
-  const scheduleTaskNotification = async (task: Task) => {
-    const { title, starts_in } = task;
-    if (!starts_in?.seconds) return;
-    try {
-      await Notifications.scheduleNotificationAsync({
-        content: {
-          title: "Task Reminder",
-          body: `Your task "${title}" is starting soon!`,
-          data: { task },
-          sound: "default",
-          categoryIdentifier: "task-actions",
-        },
-        trigger: {
-          type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-          seconds: starts_in.seconds,
-        },
-      });
-    } catch (error) {
-      console.error("Failed to schedule notification:", error);
-    }
-  };
-
+  
   return {
     tasks,
     taskRooms, 

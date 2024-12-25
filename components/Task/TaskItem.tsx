@@ -20,7 +20,6 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
             <Text className="text-sm text-gray-500 font-dmSansRegular">
                 Starts At: {format(new Date(task.starts_at), "PPpp")}
             </Text>
-
         </View>
     )
 }

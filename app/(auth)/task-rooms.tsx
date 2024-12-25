@@ -27,7 +27,7 @@ const TaskRooms = () => {
   };
 
   const handleNavigateToRoom = (roomId: string) => {
-    router.navigate(`/task-rooms/${roomId}`);
+    router.navigate(`/(auth)/${roomId}`);
   };
 
 
@@ -46,29 +46,27 @@ const TaskRooms = () => {
           contentContainerClassName="px-4"
           renderItem={({ item }) => (
             <Pressable
-              android_ripple={{ color: "rgba(0, 0, 0, 0.2)" }}
               className="py-4 border-b border-gray-300"
               onPress={() => handleNavigateToRoom(item.id)}
             >
               <Text className="text-lg font-medium font-dmSansBold">{item.id}</Text>
-              <Text className="text-sm text-gray-500 font-dmSansRegular">Created At: {format(new Date(item.created_at), 'MM/dd/yyyy HH:mm:ss')}</Text>
+              <Text className="text-sm text-gray-500 font-dmSansRegular">Created At: {format(new Date(item.created_at), "PPpp")}</Text>
             </Pressable>
           )}
           ListEmptyComponent={<Text className="text-center mt-6 font-semibold font-dmSansMedium">No Task Rooms Found</Text>}
         />
 
-        <View className=" absolute bottom-16 right-14" >
+        <View className=" absolute bottom-12 right-14">
           <AnimatedButton
             onPress={handleCreateRoom}
             isLoading={isCreatingRoom}
             color="bg-brand-primary"
             disabledColor="bg-brand-primary/40"
-            className="h-16 w-16 rounded-full "
+            className=" px-4 py-4 rounded-full "
             icon={<Entypo name="plus" size={24} color="white" />}
 
           />
         </View>
-
 
 
       </SafeAreaView>

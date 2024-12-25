@@ -20,14 +20,7 @@ export const useAuth = () => {
     }
   };
 
-
-
-  const isAuthenticated = async () => {
-    const accessToken = await SecureStore.getItemAsync("access_token");
-    return !!accessToken; 
-  };
-
-  return { login, logout, isAuthenticated };
+  return { login, logout };
 };
 
 

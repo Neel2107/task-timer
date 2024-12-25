@@ -37,10 +37,10 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
       activeOpacity={1}
       onPress={onPress}
       onPressIn={() => {
+        Vibration.vibrate(15);
         scale.value = withTiming(0.965, { duration: 200 });
       }}
       onPressOut={() => {
-        Vibration.vibrate(15);
         scale.value = withSpring(1, {
           damping: 10,
           stiffness: 150,
@@ -49,7 +49,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
     >
       <Animated.View
         style={animatedStyle}
-        className={`w-full rounded-xl py-3 items-center justify-center ${disabled || isLoading ? disabledColor : color
+        className={`w-full  py-3 items-center justify-center ${disabled || isLoading ? disabledColor : color
           } ${className} `}
       >
         {isLoading ? (

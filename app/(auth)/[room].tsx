@@ -40,8 +40,10 @@ const RoomScreen = () => {
 
     return (
         <>
-            <SafeAreaView className="flex-1 bg-white p-4">
-                <View className="flex-row items-center gap-4">
+            <SafeAreaView className="flex-1 bg-white py-4">
+
+
+                <View className="flex-row items-center gap-4 px-4">
                     <TouchableOpacity
                         activeOpacity={0.8}
                         onPress={() => router.back()}
@@ -51,7 +53,7 @@ const RoomScreen = () => {
                     <Text className="text-2xl  font-dmSansExtraBold ">Room: {room}</Text>
                 </View>
                 {isInitialLoading ?
-                    <View className="flex-1 pt-5 flex-col gap-5">
+                    <View className="flex-1 pt-14 flex-col gap-5 px-4">
                         {[...Array(5)].map((_, index) => (
                             <Skeleton
                                 key={index}
@@ -67,6 +69,7 @@ const RoomScreen = () => {
                         data={tasks}
                         className="flex-1"
                         keyExtractor={(item) => item.id}
+                        contentContainerClassName="px-4"
                         refreshControl={
                             <RefreshControl
                                 refreshing={isFetchingTasks && tasks.length > 0}
@@ -79,13 +82,17 @@ const RoomScreen = () => {
                         renderItem={({ item }) => <TaskItem task={item} />}
                     />}
 
-                <AnimatedButton
-                    onPress={handleGetNextTask}
-                    isLoading={isFetchingNextTask}
-                    text="Get Next Task"
-                    color="bg-brand-secondary"
-                    disabledColor="bg-brand-secondary/40"
-                />
+                <View className="pt-4 border-t border-zinc-200 px-4" >
+
+                    <AnimatedButton
+                        onPress={handleGetNextTask}
+                        isLoading={isFetchingNextTask}
+                        text="Get Next Task"
+                        color="bg-brand-secondary"
+                        disabledColor="bg-brand-secondary/40"
+                        className="rounded-xl"
+                    />
+                </View>
 
             </SafeAreaView>
         </>
