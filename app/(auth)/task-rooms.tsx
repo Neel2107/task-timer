@@ -2,6 +2,7 @@ import ItemComponent from "@/components/Item/ItemComponent";
 import { useAuth } from "@/hooks/useAuth";
 import { useNotificationPermission } from "@/hooks/usePermisson";
 import { useTasks } from "@/hooks/useTasks";
+import EmptyRooms from "@assets/images/empty-rooms.svg";
 import { AntDesign } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React from "react";
@@ -56,7 +57,12 @@ const TaskRooms = () => {
               onPress={() => handleNavigateToRoom(item.id)}
             />
           )}
-          ListEmptyComponent={<Text className="text-center mt-6 font-semibold font-dmSansMedium">No Task Rooms Found</Text>}
+          ListEmptyComponent={
+            <View className="flex-col mt-14 items-center justify-center gap-4">
+
+              <EmptyRooms width={200} height={200} />
+              <Text className="text-center  font-dmSansRegular text-zinc-500">No Task Rooms Found</Text>
+            </View>}
         />
 
         <View className=" absolute bottom-12 right-12">

@@ -81,8 +81,12 @@ Task Timer is a React Native app built with Expo, enabling users to create task 
 ### **Notifications**
 - Notifications trigger based on `starts_in` duration.
 - Actionable buttons (`Done`, `Skip`) dismiss the notification.
+- Custom notification icon enhances user experience.
 
----
+### **Visual Enhancements**
+- Custom app icon for a distinctive application identity.
+- Custom splash screen for a professional look and feel during app launch.
+
 
 ## **Screen Recording**
 
