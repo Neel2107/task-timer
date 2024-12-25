@@ -67,27 +67,34 @@ Task Timer is a React Native app built with Expo, enabling users to create task 
 
 ---
 
-## **Features**
+### **Features**
 
 ### **Task Rooms**
 - Create new task rooms.
 - View the list of existing rooms with timestamps.
 - **Local Data Persistence**: Task room data is stored locally, ensuring that if the app is closed and reopened, the task rooms are retained.
 
-
 ### **Tasks**
 - Fetch tasks for a specific room.
 - "Get Next Task" feature fetches and schedules the next task.
 - Display task details with scheduled notifications.
+- **Pull-to-Refresh**: Users can refresh the task list by pulling down on the screen.
 
 ### **Notifications**
 - Notifications trigger based on `starts_in` duration.
 - Actionable buttons (`Done`, `Skip`) dismiss the notification.
 - Custom notification icon enhances user experience.
 
+### **Authentication**
+- **Refresh Token Functionality**: Automatically handles token expiration by using a refresh token to acquire a new access token without requiring the user to log in again.
+- **Token Validation at App Start**: On app launch, checks for valid tokens to determine if the user is already authenticated.
+- **Secure Token Storage**: Authentication tokens (access and refresh tokens) are securely stored using **Expo Secure Store** to ensure data security.
+
 ### **Visual Enhancements**
 - Custom app icon for a distinctive application identity.
 - Custom splash screen for a professional look and feel during app launch.
+- **Smooth Animations**: Button press animations implemented using **Reanimated** for a polished and responsive user experience.
+- **High-Quality Assets**: High-resolution icons, images, and splash screens are used to provide a visually appealing and professional appearance.
 
 
 ## **Screen Recording**
