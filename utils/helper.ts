@@ -17,12 +17,12 @@ export const validateInputs = (username: string, password: string): boolean => {
     }
   
     if (!usernameRegex.test(username)) {
-      Alert.alert("Validation Error", "Username can only contain letters, numbers, dots, underscores, or hyphens.");
+      ToastAndroid.show("Username can only contain letters, numbers, dots, underscores, or hyphens.", ToastAndroid.SHORT);
       return false;
     }
   
     if (password.length < minPasswordLength) {
-      Alert.alert("Validation Error", `Password must be at least ${minPasswordLength} characters long.`);
+      ToastAndroid.show(`Password must be at least ${minPasswordLength} characters long.`, ToastAndroid.SHORT);
       return false;
     }
   
@@ -30,7 +30,7 @@ export const validateInputs = (username: string, password: string): boolean => {
   };
 
 
- export  const scheduleTaskNotification = async (task: Task) => {
+ export const scheduleTaskNotification = async (task: Task) => {
     const { title, starts_in } = task;
     if (!starts_in?.seconds) return;
     try {

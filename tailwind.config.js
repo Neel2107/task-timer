@@ -11,8 +11,11 @@ module.exports = {
       colors: {
         brand: {
           primary: "#7F3DFF",
+          disabled_primary: "#9b6ff4",  
           secondary: "#7461c3",
+          disabled_secondary: "#9c87d0",  
           alternative: "#137886",
+          disabled_alternative: "#3d919b",  
         },
         text: {
           body: "#36313d",

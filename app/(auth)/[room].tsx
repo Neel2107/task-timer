@@ -1,9 +1,9 @@
 import AnimatedButton from "@/components/Buttons/AnimatedButton";
+import ItemComponent from "@/components/Item/ItemComponent";
 import Skeleton from "@/components/Skeleton/Skeleton";
-import TaskItem from "@/components/Task/TaskItem";
 import { useNotificationPermission } from "@/hooks/usePermisson";
 import { useTasks } from "@/hooks/useTasks";
-import { Entypo } from "@expo/vector-icons";
+import { FontAwesome6 } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect } from "react";
 import { FlatList, RefreshControl, Text, ToastAndroid, TouchableOpacity, View } from "react-native";
@@ -40,17 +40,15 @@ const RoomScreen = () => {
 
     return (
         <>
-            <SafeAreaView className="flex-1 bg-white py-4">
-
-
+            <SafeAreaView className="flex-1 bg-[#e6e6e6] py-4">
                 <View className="flex-row items-center gap-4 px-4">
                     <TouchableOpacity
                         activeOpacity={0.8}
                         onPress={() => router.back()}
                     >
-                        <Entypo name="chevron-thin-left" size={24} color="black" />
+                        <FontAwesome6 name="chevron-left" size={24} color="black" />
                     </TouchableOpacity>
-                    <Text className="text-2xl  font-dmSansExtraBold ">Room: {room}</Text>
+                    <Text className="text-2xl font-dmSansExtraBold ">Room: {room}</Text>
                 </View>
                 {isInitialLoading ?
                     <View className="flex-1 pt-14 flex-col gap-5 px-4">
@@ -69,17 +67,26 @@ const RoomScreen = () => {
                         data={tasks}
                         className="flex-1"
                         keyExtractor={(item) => item.id}
-                        contentContainerClassName="px-4"
+                        contentContainerClassName="mt-5 gap-3 pb-10"
                         refreshControl={
                             <RefreshControl
                                 refreshing={isFetchingTasks && tasks.length > 0}
                                 onRefresh={() => fetchTasks(room as string)}
+                                colors={["#7461c3"]}
                             />
                         }
                         ListEmptyComponent={
                             <Text className="text-center mt-6">No Tasks Found</Text>
                         }
-                        renderItem={({ item }) => <TaskItem task={item} />}
+                        renderItem={({ item }) => (
+                            <ItemComponent
+                                item={{
+                                    id: item.id,
+                                    title: item.title,
+                                    starts_at: item.starts_at,
+                                }}
+                            />
+                        )}
                     />}
 
                 <View className="pt-4 border-t border-zinc-200 px-4" >
@@ -87,10 +94,10 @@ const RoomScreen = () => {
                     <AnimatedButton
                         onPress={handleGetNextTask}
                         isLoading={isFetchingNextTask}
-                        text="Get Next Task"
-                        color="bg-brand-secondary"
-                        disabledColor="bg-brand-secondary/40"
-                        className="rounded-xl"
+                        text={tasks.length === 0 ? "Get First Task" : "Get Next Task"}
+                        color="bg-brand-primary"
+                        disabledColor="bg-brand-disabled_primary"
+                        className="rounded-xl "
                     />
                 </View>
 

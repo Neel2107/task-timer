@@ -15,10 +15,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const LoginScreen = () => {
 
-  const { login } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const { login } = useAuth();
 
   const handleLogin = async () => {
     if (!validateInputs(username, password)) return;
@@ -44,10 +45,10 @@ const LoginScreen = () => {
         bottomOffset={350}
         keyboardShouldPersistTaps="always"
       >
-        <View className="flex items-center justify-center py-10  ">
+        <View className="flex items-center justify-center py-10 ">
           <TaskLogo height={250} width={250} />
         </View>
-        <View className=" flex-1 ite  flex-col justify-center    gap-4 w-full px-4">
+        <View className=" flex-1 ite  flex-col justify-center gap-4 w-full px-4">
           <Text className="text-5xl   font-dmSansExtraBold ">Welcome To Task Timer</Text>
 
           <Text className="text-text-medium-contrast font-dmSansMedium">
@@ -89,8 +90,6 @@ const LoginScreen = () => {
           </View>
         </View>
       </KeyboardAwareScrollView>
-
-
 
     </SafeAreaView >
   );

@@ -56,7 +56,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
           <ActivityIndicator size={24} color="#FFFFFF" />
         ) : (
           <>
-            {icon ? icon : <Text className={`text-white font-medium text-lg ${textClassName}`}>{text}</Text>}
+            {icon ? icon : <Text className={`text-white  font-dmSansBold text-xl ${textClassName}`}>{text}</Text>}
           </>
         )}
       </Animated.View>

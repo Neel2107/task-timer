@@ -6,8 +6,8 @@ import { Task, TaskRoom } from "@/utils/types";
 import { useState } from "react";
 
 export const useTasks = () => {
-  const {tasks, setTasks, taskRooms, setTaskRooms} = useAppContext()
-
+  const { taskRooms, setTaskRooms} = useAppContext()
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [currentRoomId, setCurrentRoomId] = useState<string | null>(null);
   const [isCreatingRoom, setIsCreatingRoom] = useState(false);
   const [isFetchingTasks, setIsFetchingTasks] = useState(false);

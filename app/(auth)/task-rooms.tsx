@@ -1,12 +1,11 @@
-import AnimatedButton from "@/components/Buttons/AnimatedButton";
+import ItemComponent from "@/components/Item/ItemComponent";
 import { logout } from "@/hooks/useAuth";
 import { useNotificationPermission } from "@/hooks/usePermisson";
 import { useTasks } from "@/hooks/useTasks";
-import { Entypo } from "@expo/vector-icons";
-import { format } from "date-fns";
+import { AntDesign } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React from "react";
-import { FlatList, Pressable, Text, ToastAndroid, View } from "react-native";
+import { ActivityIndicator, FlatList, ImageBackground, Text, ToastAndroid, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const TaskRooms = () => {
@@ -35,37 +34,43 @@ const TaskRooms = () => {
   return (
     <>
 
-      <SafeAreaView className="flex-1 bg-white py-4 relative">
+      <SafeAreaView className="flex-1 bg-[#e6e6e6] pt-4 relative">
+        <ImageBackground
+          source={require("@assets/images/tasks-bg.png")}
+          className="h-60 absolute -top-36 left-0 right-0 "
+        />
         <Text
           onPress={logout}
-          className="text-4xl font-bold px-4">Task Rooms</Text>
+          className="text-4xl font-bold px-4 text-start">Task Rooms</Text>
 
         <FlatList
           data={taskRooms}
           keyExtractor={(item) => item.id}
-          contentContainerClassName="px-4"
-          renderItem={({ item }) => (
-            <Pressable
-              className="py-4 border-b border-gray-300"
+          contentContainerClassName=" mt-5 gap-3 pb-20"
+          renderItem={({ item, index }) => (
+            <ItemComponent
+              item={{
+                id: item.id,
+                title: `Room No: ${index + 1}`,
+                created_at: item.created_at,
+              }}
+              index={index}
               onPress={() => handleNavigateToRoom(item.id)}
-            >
-              <Text className="text-lg font-medium font-dmSansBold">{item.id}</Text>
-              <Text className="text-sm text-gray-500 font-dmSansRegular">Created At: {format(new Date(item.created_at), "PPpp")}</Text>
-            </Pressable>
+            />
           )}
           ListEmptyComponent={<Text className="text-center mt-6 font-semibold font-dmSansMedium">No Task Rooms Found</Text>}
         />
 
-        <View className=" absolute bottom-12 right-14">
-          <AnimatedButton
+        <View className=" absolute bottom-12 right-12">
+          <TouchableOpacity
             onPress={handleCreateRoom}
-            isLoading={isCreatingRoom}
-            color="bg-brand-primary"
-            disabledColor="bg-brand-primary/40"
-            className=" px-4 py-4 rounded-full "
-            icon={<Entypo name="plus" size={24} color="white" />}
+            style={{ elevation: 5 }}
+            activeOpacity={0.8}
+            className={` px-4 py-4 rounded-full ${isCreatingRoom ? "bg-brand-disabled_primary" : "bg-brand-primary"} `}>
+            {isCreatingRoom ? <ActivityIndicator size={24} color="#FFFFFF" /> :
+              <AntDesign name="plus" size={24} color="white" />}
+          </TouchableOpacity>
 
-          />
         </View>
 
 
