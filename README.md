@@ -72,6 +72,8 @@ Task Timer is a React Native app built with Expo, enabling users to create task 
 ### **Task Rooms**
 - Create new task rooms.
 - View the list of existing rooms with timestamps.
+- **Local Data Persistence**: Task room data is stored locally, ensuring that if the app is closed and reopened, the task rooms are retained.
+
 
 ### **Tasks**
 - Fetch tasks for a specific room.

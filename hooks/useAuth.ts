@@ -25,6 +25,7 @@ export const useAuth = () => {
 
     await SecureStore.deleteItemAsync("access_token");
     await SecureStore.deleteItemAsync("refresh_token");
+    await SecureStore.deleteItemAsync("taskRooms");
   
     router.replace("/login");
   };
