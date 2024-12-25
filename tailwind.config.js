@@ -13,15 +13,10 @@ module.exports = {
           primary: "#7F3DFF",
           disabled_primary: "#9b6ff4",  
           secondary: "#7461c3",
-          disabled_secondary: "#9c87d0",  
-          alternative: "#137886",
-          disabled_alternative: "#3d919b",  
+          disabled_secondary: "#9c87d0",    
         },
         text: {
           body: "#36313d",
-          highContrast: "#313131",
-          mediumContrast: "#635e69",
-          lowContrast: "#746d76",
         },
       },
       fontFamily: {

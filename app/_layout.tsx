@@ -1,7 +1,7 @@
 import { AppProvider } from "@/context/AppContext";
 import useAuthStatus from "@/hooks/useAuthStatus";
 import { useNotificationResponseHandler } from "@/hooks/useNotificationResponseHandler";
-import { setupNotificationCategories, setupNotificationChannel } from "@/utils/helper";
+import { setupNotificationCategories } from "@/utils/helper";
 import { useFonts } from "expo-font";
 import * as Notifications from "expo-notifications";
 import { Stack, useRouter } from "expo-router";
@@ -66,7 +66,6 @@ const InitialLayout = () => {
   useEffect(() => {
     const initializeNotifications = async () => {
       await setupNotificationCategories();
-      await setupNotificationChannel();
     };
   
     initializeNotifications();

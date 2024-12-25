@@ -81,7 +81,7 @@ const LoginScreen = () => {
                 isLoading={isLoading}
                 text="Login"
                 color="bg-brand-primary"
-                disabledColor="bg-brand-primary/40"
+                disabledColor="bg-brand-disabled_primary"
                 disabled={isLoading}
                 textClassName="font-dmSansExtraBold"
                 className="rounded-2xl py-4 "
