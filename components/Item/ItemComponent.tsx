@@ -19,7 +19,7 @@ const ItemComponent: React.FC<ItemProps> = ({ item, index, onPress }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      className="flex-col gap-2 p-3 mx-2 bg-white/40 rounded-2xl"
+      className="flex-col gap-2 p-3 mx-2 bg-white/60 rounded-2xl"
       onPress={onPress}
     >
       {isRoom ? (

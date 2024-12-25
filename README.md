@@ -105,4 +105,4 @@ Task Timer is a React Native app built with Expo, enabling users to create task 
 - [React Native](https://reactnative.dev)
 - [NativeWind](https://nativewind.dev)
 - [Expo Notifications](https://docs.expo.dev/versions/latest/sdk/notifications/)
-```
+

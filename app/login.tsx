@@ -48,14 +48,14 @@ const LoginScreen = () => {
         <View className="flex items-center justify-center py-10 ">
           <TaskLogo height={250} width={250} />
         </View>
-        <View className=" flex-1 ite  flex-col justify-center gap-4 w-full px-4">
-          <Text className="text-5xl   font-dmSansExtraBold ">Welcome To Task Timer</Text>
+        <View className=" flex-1 flex-col justify-center gap-4 w-full px-4">
+          <Text className="text-5xl font-dmSansExtraBold ">Welcome To Task Timer</Text>
 
           <Text className="text-text-medium-contrast font-dmSansMedium">
             Enter your login credentials to continue
           </Text>
 
-          <View className="flex flex-col gap-4">
+          <View className="flex flex-col gap-6">
             <View className="flex-col gap-4 ">
               <View >
                 <CustomTextInput

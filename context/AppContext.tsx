@@ -1,12 +1,11 @@
-import { Task, TaskRoom } from "@/utils/types";
-import React, { ReactNode, useContext, useState } from "react";
-
+import { TaskRoom } from "@/utils/types";
+import * as SecureStore from "expo-secure-store";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
 
 interface AppContextType {
-
-
-  taskRooms: TaskRoom[];  
+  taskRooms: TaskRoom[];
   setTaskRooms: React.Dispatch<React.SetStateAction<TaskRoom[]>>;
+  loadTaskRooms: () => Promise<void>; // Function to load rooms on startup
 }
 
 const AppContext = React.createContext<AppContextType | undefined>(undefined);
@@ -16,14 +15,46 @@ interface AppProviderProps {
 }
 
 export function AppProvider({ children }: AppProviderProps) {
-
- 
   const [taskRooms, setTaskRooms] = useState<TaskRoom[]>([]);
 
-  const value = {
 
+  const SECURE_STORE_KEY = "taskRooms";
+
+  useEffect(() => {
+    const saveTaskRooms = async () => {
+      try {
+        await SecureStore.setItemAsync(SECURE_STORE_KEY, JSON.stringify(taskRooms));
+      } catch (error) {
+        console.error("Failed to save task rooms to SecureStore:", error);
+      }
+    };
+
+    if (taskRooms.length > 0) {
+      saveTaskRooms();
+    }
+  }, [taskRooms]);
+
+  // Load task rooms from SecureStore when the app starts
+  const loadTaskRooms = async () => {
+    try {
+      const storedRooms = await SecureStore.getItemAsync(SECURE_STORE_KEY);
+      if (storedRooms) {
+        setTaskRooms(JSON.parse(storedRooms));
+      }
+    } catch (error) {
+      console.error("Failed to load task rooms from SecureStore:", error);
+    }
+  };
+
+  // Load task rooms on initial render
+  useEffect(() => {
+    loadTaskRooms();
+  }, []);
+
+  const value = {
     taskRooms,
-    setTaskRooms
+    setTaskRooms,
+    loadTaskRooms,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
@@ -32,7 +63,7 @@ export function AppProvider({ children }: AppProviderProps) {
 export function useAppContext() {
   const context = useContext(AppContext);
   if (!context) {
-    throw new Error("useAppContext must be used within a AppProvider");
+    throw new Error("useAppContext must be used within an AppProvider");
   }
   return context;
 }

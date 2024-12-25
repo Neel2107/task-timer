@@ -32,7 +32,7 @@ const TaskRooms = () => {
   return (
     <>
 
-      <SafeAreaView className="flex-1 bg-[#e6e6e6] pt-4 relative">
+      <SafeAreaView className="flex-1 bg-default_bg pt-4 relative">
         <ImageBackground
           source={require("@assets/images/tasks-bg.png")}
           className="h-60 absolute -top-36 left-0 right-0 "

@@ -40,7 +40,7 @@ const RoomScreen = () => {
 
     return (
         <>
-            <SafeAreaView className="flex-1 bg-[#e6e6e6] py-4">
+            <SafeAreaView className="flex-1 bg-default_bg pt-4 ">
                 <View className="flex-row items-center gap-4 px-4">
                     <TouchableOpacity
                         activeOpacity={0.8}
@@ -70,14 +70,14 @@ const RoomScreen = () => {
                         contentContainerClassName="mt-5 gap-3 pb-10"
                         refreshControl={
                             <RefreshControl
-                                refreshing={isFetchingTasks && tasks.length > 0}
-                                onRefresh={() => fetchTasks(room as string)}
+                                refreshing={isFetchingTasks}
+                                onRefresh={() => fetchTasks(room)}
                                 colors={["#7461c3"]}
                             />
                         }
                         ListEmptyComponent={<View className="flex-col items-center justify-center gap-4">
                             <EmptyList width={250} height={250} />
-                            <Text className="text-center mt-6 font-dmSansRegular">No Tasks Found</Text>
+                            <Text className="text-center mt-6 font-dmSansRegular text-zinc-500">No Tasks Found</Text>
 
                         </View>
                         }
@@ -92,15 +92,14 @@ const RoomScreen = () => {
                         )}
                     />}
 
-                <View className="pt-4  px-4" >
-
+                <View className="p-4" >
                     <AnimatedButton
                         onPress={handleGetNextTask}
                         isLoading={isFetchingNextTask}
                         text={tasks.length === 0 ? "Get First Task" : "Get Next Task"}
                         color="bg-brand-primary"
                         disabledColor="bg-brand-disabled_primary"
-                        className="rounded-xl "
+                        className="rounded-2xl py-4"
                     />
                 </View>
 
