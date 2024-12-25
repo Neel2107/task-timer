@@ -90,7 +90,7 @@ Task Timer is a React Native app built with Expo, enabling users to create task 
 
 ## **Screen Recording**
 
-[Embedded screen recording here, showcasing the working app.]
+[[Embedded screen recording here, showcasing the working app.]](https://github.com/user-attachments/assets/8f7a4f08-9d13-4c3a-a4a6-e79019a7a588)
 
 
 ## **Screenshots**
