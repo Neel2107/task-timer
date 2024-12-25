@@ -1,6 +1,6 @@
 import { LOGIN } from "@/utils/apis";
-import { jsonLog } from "@/utils/helper";
 import axios from "axios";
+import * as Notifications from "expo-notifications";
 import { router } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 
@@ -21,6 +21,7 @@ export const useAuth = () => {
   };
 
     const logout = async () => {
+    await Notifications.dismissAllNotificationsAsync();
 
     await SecureStore.deleteItemAsync("access_token");
     await SecureStore.deleteItemAsync("refresh_token");

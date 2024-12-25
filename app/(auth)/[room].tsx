@@ -3,6 +3,7 @@ import ItemComponent from "@/components/Item/ItemComponent";
 import Skeleton from "@/components/Skeleton/Skeleton";
 import { useNotificationPermission } from "@/hooks/usePermisson";
 import { useTasks } from "@/hooks/useTasks";
+import EmptyList from "@assets/images/empty-list.svg";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect } from "react";
@@ -74,8 +75,11 @@ const RoomScreen = () => {
                                 colors={["#7461c3"]}
                             />
                         }
-                        ListEmptyComponent={
-                            <Text className="text-center mt-6">No Tasks Found</Text>
+                        ListEmptyComponent={<View className="flex-col items-center justify-center gap-4">
+                            <EmptyList width={250} height={250} />
+                            <Text className="text-center mt-6 font-dmSansRegular">No Tasks Found</Text>
+
+                        </View>
                         }
                         renderItem={({ item }) => (
                             <ItemComponent
@@ -88,7 +92,7 @@ const RoomScreen = () => {
                         )}
                     />}
 
-                <View className="pt-4 border-t border-zinc-200 px-4" >
+                <View className="pt-4  px-4" >
 
                     <AnimatedButton
                         onPress={handleGetNextTask}

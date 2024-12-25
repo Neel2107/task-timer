@@ -39,12 +39,12 @@ const TaskRooms = () => {
         />
         <Text
           onPress={logout}
-          className="text-4xl font-bold px-4 text-start">Task Rooms</Text>
+          className="text-4xl font-dmSansExtraBold px-4 text-start">Task Rooms</Text>
 
         <FlatList
           data={taskRooms}
           keyExtractor={(item) => item.id}
-          contentContainerClassName=" mt-5 gap-3 pb-20"
+          contentContainerClassName=" mt-3 gap-3 pb-20"
           renderItem={({ item, index }) => (
             <ItemComponent
               item={{

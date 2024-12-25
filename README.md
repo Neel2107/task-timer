@@ -1,50 +1,108 @@
-# Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# **Task Timer**
 
-## Get started
+Task Timer is a React Native app built with Expo, enabling users to create task rooms, manage tasks, and receive notifications for task reminders.
 
-1. Install dependencies
+---
+
+## **Setup Instructions**
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Neel2107/task-timer.git
+   cd task-timer
+   ```
+
+2. Install dependencies:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. Start the development server:
 
    ```bash
-    npx expo start
+   npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+4. Open the app:
+   - **Development build:** Follow [Expo Development Build Guide](https://docs.expo.dev/develop/development-builds/introduction/).
+   - **Android emulator or iOS simulator:** Follow [Expo's setup instructions](https://docs.expo.dev/workflow/android-studio-emulator/).
+   - **Expo Go App:** Scan the QR code displayed after running `npx expo start`.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## **Assumptions**
 
-## Get a fresh project
+- Users need notification permissions for task reminders.
+- Notifications are scheduled based on task `starts_in` attributes, which may include days, hours, minutes, or seconds.
+- Tasks and task rooms are retrieved via mock APIs (`api` module).
+- There can be multiple task rooms at a time, and tasks are associated with specific rooms.
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
+## **Technical Decisions**
+
+1. **Architecture**: 
+   - **File-based Routing**: Simplifies navigation with [Expo Router](https://docs.expo.dev/router/introduction/).
+   - **Hooks**: Custom hooks like `useTasks` and `useAuth` centralize logic and maintain separation of concerns.
+
+2. **Notifications**: 
+   - **Expo Notifications**: Used for scheduling, canceling, and handling task reminders.
+   - Custom notification categories are implemented for actions (`Done`, `Skip`).
+
+3. **State Management**: 
+   - **Context API**: For managing global state (e.g., task rooms).
+
+4. **Styling**: 
+   - **NativeWind**: Utility-first CSS framework for consistent, responsive UI.
+   - Customizable themes for branding.
+
+5. **Keyboard Handling**:
+   - Ensures proper handling of the keyboard using `react-native-keyboard-controller` to prevent UI overlap.
+
+6. **Task Scheduling**:
+   - Notifications are uniquely identified by task IDs, ensuring no duplication or early triggers.
+
+---
+
+## **Features**
+
+### **Task Rooms**
+- Create new task rooms.
+- View the list of existing rooms with timestamps.
+
+### **Tasks**
+- Fetch tasks for a specific room.
+- "Get Next Task" feature fetches and schedules the next task.
+- Display task details with scheduled notifications.
+
+### **Notifications**
+- Notifications trigger based on `starts_in` duration.
+- Actionable buttons (`Done`, `Skip`) dismiss the notification.
+
+---
+
+## **Screen Recording**
+
+[Embedded screen recording here, showcasing the working app.]
+
+
+## **Screenshots**
+
+### Task Rooms
+![Task Rooms Screenshot](link-to-image)
+
+### Task Notifications
+![Notification Screenshot](link-to-image)
+
+---
+
+## **Credits**
+
+- [Expo](https://expo.dev)
+- [React Native](https://reactnative.dev)
+- [NativeWind](https://nativewind.dev)
+- [Expo Notifications](https://docs.expo.dev/versions/latest/sdk/notifications/)
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.

@@ -18,6 +18,7 @@ module.exports = {
         text: {
           body: "#36313d",
         },
+        default_bg: "#e6e6e6"
       },
       fontFamily: {
         spaceMono: ["SpaceMono", "monospace"],
