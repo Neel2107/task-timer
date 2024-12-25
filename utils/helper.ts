@@ -3,11 +3,6 @@ import { ToastAndroid } from "react-native";
 import { Task } from "./types";
 
 
-export const jsonLog = (data: any) => {
-    console.log(JSON.stringify(data, null, 2));
-}
-
-
 export const validateInputs = (username: string, password: string): boolean => {
     const usernameRegex = /^[a-zA-Z0-9_.-]+$/;
     const minPasswordLength = 6;
@@ -87,9 +82,9 @@ export const scheduleTaskNotification = async (task: Task) => {
           categoryIdentifier: "task-actions",
         },
         trigger: {
-          seconds: totalSeconds, // Schedule after calculated time
+          seconds: totalSeconds, 
           type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-          repeats: false, // Ensure it does not repeat
+          repeats: false,
         },
       });
   

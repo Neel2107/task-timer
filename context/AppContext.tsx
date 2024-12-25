@@ -34,7 +34,6 @@ export function AppProvider({ children }: AppProviderProps) {
     }
   }, [taskRooms]);
 
-  // Load task rooms from SecureStore when the app starts
   const loadTaskRooms = async () => {
     try {
       const storedRooms = await SecureStore.getItemAsync(SECURE_STORE_KEY);
@@ -46,7 +45,6 @@ export function AppProvider({ children }: AppProviderProps) {
     }
   };
 
-  // Load task rooms on initial render
   useEffect(() => {
     loadTaskRooms();
   }, []);
