@@ -1,5 +1,5 @@
 import ItemComponent from "@/components/Item/ItemComponent";
-import { logout } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 import { useNotificationPermission } from "@/hooks/usePermisson";
 import { useTasks } from "@/hooks/useTasks";
 import { AntDesign } from "@expo/vector-icons";
@@ -11,7 +11,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const TaskRooms = () => {
   const { taskRooms, isCreatingRoom, createTaskRoom } = useTasks();
   const { hasPermission } = useNotificationPermission();
-
+  const { logout } = useAuth();
 
   const handleCreateRoom = async () => {
     if (!hasPermission) {
@@ -28,8 +28,6 @@ const TaskRooms = () => {
   const handleNavigateToRoom = (roomId: string) => {
     router.navigate(`/(auth)/${roomId}`);
   };
-
-
 
   return (
     <>

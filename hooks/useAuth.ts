@@ -20,14 +20,14 @@ export const useAuth = () => {
     }
   };
 
+    const logout = async () => {
+
+    await SecureStore.deleteItemAsync("access_token");
+    await SecureStore.deleteItemAsync("refresh_token");
+  
+    router.replace("/login");
+  };
   return { login, logout };
 };
 
 
-export  const logout = async () => {
-
-  await SecureStore.deleteItemAsync("access_token");
-  await SecureStore.deleteItemAsync("refresh_token");
-
-  router.replace("/login");
-};

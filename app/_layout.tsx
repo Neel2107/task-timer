@@ -1,7 +1,7 @@
 import { AppProvider } from "@/context/AppContext";
 import useAuthStatus from "@/hooks/useAuthStatus";
 import { useNotificationResponseHandler } from "@/hooks/useNotificationResponseHandler";
-import { setupNotificationCategories } from "@/utils/helper";
+import { setupNotificationCategories, setupNotificationChannel } from "@/utils/helper";
 import { useFonts } from "expo-font";
 import * as Notifications from "expo-notifications";
 import { Stack, useRouter } from "expo-router";
@@ -64,14 +64,20 @@ const InitialLayout = () => {
   }, [loaded, isAuthenticated]);
 
   useEffect(() => {
-    setupNotificationCategories()
-  }, [])
+    const initializeNotifications = async () => {
+      await setupNotificationCategories();
+      await setupNotificationChannel();
+    };
+  
+    initializeNotifications();
+  }, []);
+  
 
 
   if (!loaded || isAuthenticated === null) {
-    return (<View className="flex-1 flex items-center justify-center">
+    return (<View className="flex-1 flex items-center justify-center bg-brand-primary">
       <ActivityIndicator
-        color={"#000"}
+        color={"#ffffff"}
       />
     </View>)
   }

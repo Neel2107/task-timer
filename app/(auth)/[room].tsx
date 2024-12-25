@@ -30,9 +30,8 @@ const RoomScreen = () => {
         if (!hasPermission) {
             ToastAndroid.show("Notification permission denied", ToastAndroid.SHORT);
         }
-
         if (room) {
-            await fetchNextTask(room as string);
+            await fetchNextTask(room);
         }
     };
 

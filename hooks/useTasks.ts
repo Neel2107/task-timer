@@ -51,7 +51,9 @@ export const useTasks = () => {
       const response = await api.get<Task>(GET_NEXT_TASK(roomId));
       const nextTask = response.data;
       if (nextTask) {
+        // Schedule the notification
         await scheduleTaskNotification(nextTask);
+        // Fetch tasks again
         await fetchTasks(roomId);
       }
       return nextTask;
