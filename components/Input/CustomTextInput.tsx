@@ -7,7 +7,7 @@ interface CustomTextInputProps extends TextInputProps {
     onChangeText: (text: string) => void;
     placeholder: string;
     isPassword?: boolean;
-    className?: string; 
+    className?: string;
 }
 
 const CustomTextInput: React.FC<CustomTextInputProps> = ({
@@ -20,7 +20,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
 }) => {
     const [showPassword, setShowPassword] = useState(!isPassword)
     return (
-        <View className={`flex flex-row items-center border border-detail-medium-contrast rounded-md px-4 py-3 ${className}`}>
+        <View className={`flex flex-row items-center border border-zinc-300 rounded-md px-4 py-3 ${className}`}>
             <TextInput
                 style={{ flex: 1 }}
                 placeholder={placeholder}

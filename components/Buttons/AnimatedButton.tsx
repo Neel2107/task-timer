@@ -5,10 +5,13 @@ import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } fr
 interface AnimatedButtonProps {
   onPress: () => void;
   isLoading?: boolean;
-  text: string;
+  text?: string;
   disabled?: boolean;
-  color?: string; // Dynamic color for background
-  className?: string; // Additional Tailwind classes
+  color?: string;
+  className?: string;
+  icon?: React.ReactNode;
+  disabledColor?: string;
+  textClassName?: string;
 }
 
 const AnimatedButton: React.FC<AnimatedButtonProps> = ({
@@ -16,8 +19,11 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
   isLoading = false,
   text,
   disabled = false,
-  color = "bg-brand-primary", // Default color
+  color = "bg-brand-primary",
   className = "",
+  disabledColor = "bg-gray-400",
+  icon,
+  textClassName,
 }) => {
   const scale = useSharedValue(1);
 
@@ -31,7 +37,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
       activeOpacity={1}
       onPress={onPress}
       onPressIn={() => {
-        scale.value = withTiming(0.975, { duration: 200 });
+        scale.value = withTiming(0.965, { duration: 200 });
       }}
       onPressOut={() => {
         Vibration.vibrate(15);
@@ -43,13 +49,15 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
     >
       <Animated.View
         style={animatedStyle}
-        className={`w-full rounded-xl py-3 items-center justify-center ${disabled || isLoading ? "bg-gray-400" : color
-          } ${className}`}
+        className={`w-full rounded-xl py-3 items-center justify-center ${disabled || isLoading ? disabledColor : color
+          } ${className} `}
       >
         {isLoading ? (
-          <ActivityIndicator size="small" color="#FFFFFF" />
+          <ActivityIndicator size={24} color="#FFFFFF" />
         ) : (
-          <Text className="text-white font-medium text-base">{text}</Text>
+          <>
+            {icon ? icon : <Text className={`text-white font-medium text-lg ${textClassName}`}>{text}</Text>}
+          </>
         )}
       </Animated.View>
     </TouchableOpacity>

@@ -14,10 +14,10 @@ interface TaskItemProps {
 const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
     return (
         <View
-            className="border-b border-detail-medium-contrast py-4"
+            className="border-b border-zinc-300 py-4"
         >
-            <Text className="text-lg font-medium">{task.title}</Text>
-            <Text className="text-sm text-text-medium-contrast">
+            <Text className="text-lg font-medium font-dmSansBold">{task.title}</Text>
+            <Text className="text-sm text-gray-500 font-dmSansRegular">
                 Starts At: {format(new Date(task.starts_at), "PPpp")}
             </Text>
 

@@ -2,6 +2,8 @@ import AnimatedButton from "@/components/Buttons/AnimatedButton";
 import { logout } from "@/hooks/useAuth";
 import { useNotificationPermission } from "@/hooks/usePermisson";
 import { useTasks } from "@/hooks/useTasks";
+import { Entypo } from "@expo/vector-icons";
+import { format } from "date-fns";
 import { router } from "expo-router";
 import React from "react";
 import { FlatList, Pressable, Text, ToastAndroid, View } from "react-native";
@@ -33,7 +35,7 @@ const TaskRooms = () => {
   return (
     <>
 
-      <SafeAreaView className="flex-1 bg-white py-4">
+      <SafeAreaView className="flex-1 bg-white py-4 relative">
         <Text
           onPress={logout}
           className="text-4xl font-bold px-4">Task Rooms</Text>
@@ -45,28 +47,30 @@ const TaskRooms = () => {
           renderItem={({ item }) => (
             <Pressable
               android_ripple={{ color: "rgba(0, 0, 0, 0.2)" }}
-
-              className="p-4 border-b border-gray-300"
+              className="py-4 border-b border-gray-300"
               onPress={() => handleNavigateToRoom(item.id)}
             >
-              <Text className="text-lg font-semibold">{item.name}</Text>
-              <Text className="text-sm text-gray-500">Created At: {new Date(item.created_at).toLocaleString()}</Text>
+              <Text className="text-lg font-medium font-dmSansBold">{item.id}</Text>
+              <Text className="text-sm text-gray-500 font-dmSansRegular">Created At: {format(new Date(item.created_at), 'MM/dd/yyyy HH:mm:ss')}</Text>
             </Pressable>
           )}
-          ListEmptyComponent={<Text className="text-center mt-6">No Task Rooms Found</Text>}
+          ListEmptyComponent={<Text className="text-center mt-6 font-semibold font-dmSansMedium">No Task Rooms Found</Text>}
         />
 
-
-        <View className="px-4">
-
+        <View className=" absolute bottom-16 right-14" >
           <AnimatedButton
             onPress={handleCreateRoom}
             isLoading={isCreatingRoom}
-            text="Create New Task Room"
             color="bg-brand-primary"
+            disabledColor="bg-brand-primary/40"
+            className="h-16 w-16 rounded-full "
+            icon={<Entypo name="plus" size={24} color="white" />}
 
           />
         </View>
+
+
+
       </SafeAreaView>
     </>
   );

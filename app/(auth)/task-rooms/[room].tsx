@@ -48,7 +48,7 @@ const RoomScreen = () => {
                     >
                         <Entypo name="chevron-thin-left" size={24} color="black" />
                     </TouchableOpacity>
-                    <Text className="text-2xl font-bold">Room: {room}</Text>
+                    <Text className="text-2xl  font-dmSansExtraBold ">Room: {room}</Text>
                 </View>
                 {isInitialLoading ?
                     <View className="flex-1 pt-5 flex-col gap-5">
@@ -84,6 +84,7 @@ const RoomScreen = () => {
                     isLoading={isFetchingNextTask}
                     text="Get Next Task"
                     color="bg-brand-secondary"
+                    disabledColor="bg-brand-secondary/40"
                 />
 
             </SafeAreaView>
