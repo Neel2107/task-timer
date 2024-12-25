@@ -1,13 +1,16 @@
 import AnimatedButton from "@/components/Buttons/AnimatedButton";
 import CustomTextInput from "@/components/Input/CustomTextInput";
 import { useAuth } from "@/hooks/useAuth";
+import { GITHUB_PROFILE_URL } from "@/utils/constants";
 import { validateInputs } from "@/utils/helper";
 import TaskLogo from "@assets/images/plan.svg";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
+  Linking,
   Text,
   ToastAndroid,
+  TouchableOpacity,
   View
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
@@ -38,6 +41,10 @@ const LoginScreen = () => {
       setIsLoading(false);
     }
   };
+
+  const openGithubProfile = () => {
+    Linking.openURL(GITHUB_PROFILE_URL)
+  }
 
   return (
     <SafeAreaView className="bg-white flex-1 flex-col">
@@ -90,6 +97,14 @@ const LoginScreen = () => {
           </View>
         </View>
       </KeyboardAwareScrollView>
+      <View className="flex-1   flex-row items-center justify-center gap-1">
+        <Text className="text-center font-dmSansMedium">
+          Developed By
+        </Text>
+        <TouchableOpacity activeOpacity={0.7} onPress={openGithubProfile}>
+          <Text className="font-dmSansBold underline text-brand-primary">Neel Patel</Text>
+        </TouchableOpacity>
+      </View>
 
     </SafeAreaView >
   );
