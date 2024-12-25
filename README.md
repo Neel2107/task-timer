@@ -95,11 +95,21 @@ Task Timer is a React Native app built with Expo, enabling users to create task 
 
 ## **Screenshots**
 
-### Task Rooms
-![Task Rooms Screenshot](link-to-image)
+<img src="https://github.com/user-attachments/assets/522022f6-bc72-4945-b649-d5926853a3d1" alt="custom-app-icon" width="200"/>
 
-### Task Notifications
-![Notification Screenshot](link-to-image)
+<img src="https://github.com/user-attachments/assets/7399fb43-25ee-4a04-8750-f6711ce08de5" alt="custom-notification-icon" width="200"/>
+
+<img src="https://github.com/user-attachments/assets/f3f01173-fbbb-4971-8aec-887c8eb9eb14" alt="custom-splash-image" width="200"/>
+
+<img src="https://github.com/user-attachments/assets/4deaa64e-136b-4d98-ab14-188728acb0f0" alt="login-screen" width="200"/>
+
+<img src="https://github.com/user-attachments/assets/4e8d0581-4a55-4225-9c65-fd1d68ea8e7e" alt="empty-task-rooms" width="200"/>
+
+<img src="https://github.com/user-attachments/assets/7d60cc66-e6be-4937-ae7c-cbe0d6ad1867" alt="empty-room" width="200"/>
+
+<img src="https://github.com/user-attachments/assets/4e2bca96-2c01-49f5-b4bd-be095ab6b04f" alt="task-rooms-list" width="200"/>
+
+<img src="https://github.com/user-attachments/assets/52059107-e042-4f02-9bb9-99e38214851c" alt="tasks-list" width="200"/>
 
 ---
 
