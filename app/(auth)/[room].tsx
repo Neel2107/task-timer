@@ -51,14 +51,14 @@ const RoomScreen = () => {
                     <Text className="text-2xl font-dmSansExtraBold ">Room: {room}</Text>
                 </View>
                 {isInitialLoading ?
-                    <View className="flex-1 pt-14 flex-col gap-5 px-4">
+                    <View className="flex-1 pt-6 flex-col gap-3 px-3">
                         {[...Array(5)].map((_, index) => (
                             <Skeleton
                                 key={index}
                                 style={{
-                                    height: 80,
+                                    height: 70,
                                     width: "100%",
-                                    borderRadius: 8,
+                                    borderRadius: 16,
                                 }}
                             />
                         ))}

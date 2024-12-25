@@ -70,10 +70,10 @@ const InitialLayout = () => {
   
     initializeNotifications();
   }, []);
-  
 
 
-  if (!loaded || isAuthenticated === null) {
+
+  if (!loaded ) {
     return (<View className="flex-1 flex items-center justify-center bg-brand-primary">
       <ActivityIndicator
         color={"#ffffff"}

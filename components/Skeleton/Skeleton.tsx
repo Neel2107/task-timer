@@ -5,7 +5,7 @@ import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTim
 
 const BASE_COLORS = {
     dark: { primary: "rgb(17, 17, 17)", secondary: "rgb(51, 51, 51)" },
-    light: { primary: "rgb(255, 255, 255)", secondary: "rgb(230, 230, 230)" },
+    light: { primary: "rgb(255, 255, 255)", secondary: "rgb(245, 245, 245)" },
 } as const;
 
 const makeColors = (mode: keyof typeof BASE_COLORS): [string, string, string, string, string, string] => [
@@ -75,7 +75,7 @@ const Skeleton = ({
                 ]}
             >
                 <LinearGradient
-                    colors={colors }
+                    colors={colors}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 0 }}
                     style={{ width: "100%", height: "100%" }}
